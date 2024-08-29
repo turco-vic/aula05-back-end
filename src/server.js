@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/doces", (req, res) => {
-  return res.status(200).json(guloseimas);
+  return res.status(201).json(guloseimas);
 });
 
 app.get("/filmes", (req, res) => {
