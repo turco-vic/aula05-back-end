@@ -51,6 +51,7 @@ const filmes = [
 app.get("/", (req, res) => {
   return res.status(200).json({ message: "Hello, World!" });
 });
+
 app.get("/doces", (req, res) => {
   return res.status(200).json(guloseimas);
 });
@@ -58,6 +59,19 @@ app.get("/doces", (req, res) => {
 app.get("/filmes", (req, res) => {
   return res.status(200).json(filmes);
 });
+
+app.post("/doces", (req, res) => {
+  const {nome, preco} = req.body
+
+  const novoDoce = {
+    id : guloseimas.length + 1,
+    nome: nome, 
+    preco: preco,
+  }
+
+  guloseimas.push(novoDoce);
+  return res.status(200).json(filmes);
+})
 
 app.listen(serverPort, () => {
   console.log(`💖💋 Server started on http://localhost:${serverPort}💖💋`);
