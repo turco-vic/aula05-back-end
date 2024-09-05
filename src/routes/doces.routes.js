@@ -37,22 +37,45 @@ docesRoutes.post("/", (req, res) => {
 
   guloseimas.push(novoDoce);
   return res.status(201).send(guloseimas);
-})
+});
 
 
 //Rota para buscar um elemento específico do array guloseimas
 docesRoutes.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  const guloseima = guloseimas.find((doce) =>  doce.id === Number(id)
-  );
-    
+  const guloseima = guloseimas.find((doce) => doce.id === Number(id));
+
 
   if (!guloseima) {
     return res.status(404).send({ message: "Guloseima não encontrada!" });
   }
 
   return res.status(200).send(guloseima);
-})
+});
+
+//Rota para editar uma guloseima
+docesRoutes.put("/:id", (req, res) => {
+  const { id } = req.params
+
+  const guloseima = guloseimas.find((doce) => doce.id === Number(id)
+  );
+
+
+  if (!guloseima) {
+    return res.status(404).send({ message: "Guloseima não encontrada!" });
+  };
+
+  const {nome, preco} = req.body
+
+  guloseima.nome = nome
+  guloseima.preco = preco
+
+  return res.status(200).send({
+    message: "Guloseima atualizada!",
+    guloseima,
+  })
+
+});
 
 export default docesRoutes;
