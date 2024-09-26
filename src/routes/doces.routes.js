@@ -4,17 +4,17 @@ const docesRoutes = Router();
 
 let guloseimas = [
   {
-    id: 1,
+    id: Number(Math.floor(Math.random() * 99)) + 1,
     nome: "Trufa",
     preco: 7.77
   },
   {
-    id: 2,
+    id: Number(Math.floor(Math.random() * 99)) + 1,
     nome: "Gud-gud",
     preco: 10.50
   },
   {
-    id: 3,
+    id: Number(Math.floor(Math.random() * 99)) + 1,
     nome: "Geleia-caioba",
     preco: 5,
   },
@@ -31,14 +31,13 @@ docesRoutes.post("/", (req, res) => {
 
   const novoDoce = {
     id: guloseimas.length + 1,
-    nome: nome,
-    preco: preco,
+    nome,
+    preco,
   }
 
   guloseimas.push(novoDoce);
   return res.status(201).send(guloseimas);
 });
-
 
 //Rota para buscar um elemento específico do array guloseimas
 docesRoutes.get("/:id", (req, res) => {
